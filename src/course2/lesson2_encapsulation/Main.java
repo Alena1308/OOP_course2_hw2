@@ -7,8 +7,8 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-//        runHomeWork1Task1();
-//        runHomeWork1Task2();
+        runHomeWork1Task1();
+        runHomeWork1Task2();
         runHomeWork2Task1();
     }
     public static void runHomeWork1Task1() {
