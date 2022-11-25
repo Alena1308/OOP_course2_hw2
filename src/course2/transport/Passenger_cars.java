@@ -1,11 +1,12 @@
 package course2.transport;
 
-public class Bus extends Transport implements Competing{
+public class Passenger_cars extends Transport implements Competing{
     private double pitStopIndicator;
     private double BestLapTimeIndicator;
     private double maxSpeedIndicator;
-    public Bus(String brand, String model, double engineVolume,
-               double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator) {
+
+    public Passenger_cars(String brand, String model, double engineVolume,
+                          double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator) {
         super(brand, model, engineVolume);
         this.pitStopIndicator = validateDoubleValue(pitStopIndicator);
         BestLapTimeIndicator = validateDoubleValue(bestLapTimeIndicator);
@@ -41,6 +42,7 @@ public class Bus extends Transport implements Competing{
                 ", начало движения: " + startGoing()  + ", конец движения: " + finishGoing() +
                 getPitStop() + getBestLapTime() + getMaxSpeed();
     }
+
     public final double getPitStopIndicator() {
         return pitStopIndicator;
     }
@@ -61,29 +63,4 @@ public class Bus extends Transport implements Competing{
     }
 
 
-
-
-    //    public Bus(String brand, String model, String color, int year, String country,
-//               double maxSpeed, String fuel) {
-//        super(brand, model, color, year, country, maxSpeed);
-//        this.setFuel(fuel);
-//    }
-//
-//    @Override
-//    public String refill() {
-//        if ("бензин".equalsIgnoreCase(getFuel())) {
-//            return "можно заправлять бензином";
-//        }
-//        if ("дизель".equalsIgnoreCase(getFuel())) {
-//            return "можно заправлять дизелем";
-//        }
-//        return "Некорректная информация";
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Бренд автобуса - " + getBrand() + ", модель - " + getModel() + ", цвет - " +
-//                getColor() + ", год выпуска - " + getYear() +  ", страна производства - " + getCountry() +
-//                ", максимальная скорость - " + getMaxSpeed() + " " + refill();
-//    }
 }
