@@ -1,26 +1,25 @@
 package course2.lesson4_task3;
 
 import course2.transport.Bus;
-import course2.transport.Passenger_cars;
 
-public class B_license_driver <B extends Passenger_cars> extends Driver {
+public class DLicenseDriver<D extends Bus> extends Driver{
 
-    public B_license_driver(String fullName, boolean hasLicense, int experience) {
+    public DLicenseDriver(String fullName, boolean hasLicense, int experience) {
         super(fullName, hasLicense, experience);
     }
     @Override
     public String startGoing() {
-        return " Завожу легковой автомобиль";
+        return " Завожу автобус";
     }
     @Override
     public String stop() {
-        return " Останавливаю легковой автомобиль";
+        return " Останавливаю автобус";
     }
     @Override
     public String refuelTheCar() {
-        return " Заправляю легковой автомобиль";
+        return " Заправляю автобус";
     }
-    public String goRace(Passenger_cars car){
+    public String goRace(Bus car){
         return "Водитель " + getFullName() + " управляет автомобилем " + car.getBrand() + " " +
                 car.getModel() + " и будет участвовать в заезде.";
     }

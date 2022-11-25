@@ -1,6 +1,5 @@
 package course2.lesson2_encapsulation;
 
-import course2.transport.Car;
 //import course2.transport.Car.Key;
 //import course2.transport.Car.Insurance;
 import java.time.LocalDate;
