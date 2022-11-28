@@ -1,11 +1,12 @@
 package course2.transport;
 
-public class Bus extends Transport implements Competing{
+public class Passenger_cars extends Transport implements Competing{
     private double pitStopIndicator;
     private double BestLapTimeIndicator;
     private double maxSpeedIndicator;
-    public Bus(String brand, String model, double engineVolume,
-               double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator) {
+
+    public Passenger_cars(String brand, String model, double engineVolume,
+                          double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator) {
         super(brand, model, engineVolume);
         this.pitStopIndicator = validateDoubleValue(pitStopIndicator);
         BestLapTimeIndicator = validateDoubleValue(bestLapTimeIndicator);
@@ -41,6 +42,7 @@ public class Bus extends Transport implements Competing{
                 ", начало движения: " + startGoing()  + ", конец движения: " + finishGoing() +
                 getPitStop() + getBestLapTime() + getMaxSpeed();
     }
+
     public final double getPitStopIndicator() {
         return pitStopIndicator;
     }
@@ -59,4 +61,6 @@ public class Bus extends Transport implements Competing{
     public void setMaxSpeedIndicator(double maxSpeedIndicator) {
         this.maxSpeedIndicator = validateDoubleValue(maxSpeedIndicator);
     }
+
+
 }
