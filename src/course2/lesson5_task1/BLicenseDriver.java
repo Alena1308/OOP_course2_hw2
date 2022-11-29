@@ -1,12 +1,13 @@
-package course2.lesson4_task3;
+package course2.lesson5_task1;
 
-import course2.transport.Passenger_cars;
+import course2.transport.PassengerCars;
 
-public class BLicenseDriver<B extends Passenger_cars> extends Driver {
+public class BLicenseDriver<B extends PassengerCars> extends Driver {
 
     public BLicenseDriver(String fullName, boolean hasLicense, int experience) {
         super(fullName, hasLicense, experience);
     }
+
     @Override
     public String startGoing() {
         return " Завожу легковой автомобиль";
@@ -19,7 +20,7 @@ public class BLicenseDriver<B extends Passenger_cars> extends Driver {
     public String refuelTheCar() {
         return " Заправляю легковой автомобиль";
     }
-    public String goRace(Passenger_cars car){
+    public String goRace(PassengerCars car){
         return "Водитель " + getFullName() + " управляет автомобилем " + car.getBrand() + " " +
                 car.getModel() + " и будет участвовать в заезде.";
     }

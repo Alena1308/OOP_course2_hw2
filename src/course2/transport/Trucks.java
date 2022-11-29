@@ -1,15 +1,18 @@
 package course2.transport;
 
 public class Trucks extends Transport implements Competing{
+    private LoadCapacity loadCapacity;
     private double pitStopIndicator;
     private double BestLapTimeIndicator;
     private double maxSpeedIndicator;
     public Trucks(String brand, String model, double engineVolume,
-                  double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator) {
+                  double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator,
+                  LoadCapacity loadCapacity) {
         super(brand, model, engineVolume);
         this.pitStopIndicator = validateDoubleValue(pitStopIndicator);
         BestLapTimeIndicator = validateDoubleValue(bestLapTimeIndicator);
         this.maxSpeedIndicator = validateDoubleValue(maxSpeedIndicator);
+        this.loadCapacity = loadCapacity;
     }
 
     @Override
@@ -19,6 +22,15 @@ public class Trucks extends Transport implements Competing{
     @Override
     public String finishGoing() {
         return "Выйти из грузовика";
+    }
+
+    @Override
+    public void printType() {
+        if (loadCapacity == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println(loadCapacity);
+        }
     }
 
     @Override
@@ -60,6 +72,10 @@ public class Trucks extends Transport implements Competing{
     public void setMaxSpeedIndicator(double maxSpeedIndicator) {
         this.maxSpeedIndicator = validateDoubleValue(maxSpeedIndicator);
     }
-
-
+    public LoadCapacity getLoadCapacity() {
+        return loadCapacity;
+    }
+    public void setLoadCapacity(LoadCapacity loadCapacity) {
+        this.loadCapacity = loadCapacity;
+    }
 }

@@ -1,15 +1,18 @@
 package course2.transport;
 
 public class Bus extends Transport implements Competing{
+    private Capacity capacity;
     private double pitStopIndicator;
     private double BestLapTimeIndicator;
     private double maxSpeedIndicator;
     public Bus(String brand, String model, double engineVolume,
-               double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator) {
+               double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator,
+               Capacity capacity) {
         super(brand, model, engineVolume);
         this.pitStopIndicator = validateDoubleValue(pitStopIndicator);
         BestLapTimeIndicator = validateDoubleValue(bestLapTimeIndicator);
         this.maxSpeedIndicator = validateDoubleValue(maxSpeedIndicator);
+        this.capacity = capacity;
     }
 
     @Override
@@ -19,6 +22,15 @@ public class Bus extends Transport implements Competing{
     @Override
     public String finishGoing() {
         return "Выйти из автобуса";
+    }
+
+    @Override
+    public void printType() {
+        if (capacity == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println(capacity);
+        }
     }
 
     @Override
@@ -58,5 +70,11 @@ public class Bus extends Transport implements Competing{
     }
     public void setMaxSpeedIndicator(double maxSpeedIndicator) {
         this.maxSpeedIndicator = validateDoubleValue(maxSpeedIndicator);
+    }
+    public Capacity getCapacity() {
+        return capacity;
+    }
+    public void setCapacity(Capacity capacity) {
+        this.capacity = capacity;
     }
 }
