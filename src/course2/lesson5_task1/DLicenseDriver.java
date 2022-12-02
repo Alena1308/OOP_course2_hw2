@@ -4,8 +4,8 @@ import course2.transport.Bus;
 
 public class DLicenseDriver<D extends Bus> extends Driver{
 
-    public DLicenseDriver(String fullName, boolean hasLicense, int experience) {
-        super(fullName, hasLicense, experience);
+    public DLicenseDriver(String fullName, boolean hasLicense, int experience, String typeLicense) {
+        super(fullName, hasLicense, experience, typeLicense);
     }
     @Override
     public String startGoing() {

@@ -35,6 +35,11 @@ public class PassengerCars extends Transport implements Competing{
     }
 
     @Override
+    public boolean passDiagnostics() {
+        return Math.random() > 0.6;
+    }
+
+    @Override
     public String getPitStop() {
         return " Время Пит стопа: " + getPitStopIndicator() + " секунд";
     }

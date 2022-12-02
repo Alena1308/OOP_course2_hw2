@@ -35,6 +35,7 @@ public abstract class Transport {
     public abstract String startGoing();
     public abstract String finishGoing();
     public abstract void printType();
+    public abstract boolean passDiagnostics();
 
     public String validateStringValue(String value) {
         if (value == null || value.isEmpty() || value.isBlank()) {

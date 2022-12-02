@@ -45,21 +45,40 @@ public class TransportTest {
         Bus mAN2 = new Bus("МАН","Lian", 4,
                 65, 4, 115, Capacity.MEDIUM);
         System.out.println(liAZ);
+        liAZ.printType();
         System.out.println(mAZ);
         System.out.println(mAN);
-        System.out.println(mAN2);
-        liAZ.printType();
         mAN.printType();
+        System.out.println(mAN2);
 
         BLicenseDriver alex = new BLicenseDriver("Ivanov Alex Ivanovich",
-                true, 6);
+                true, 6, "B");
         System.out.println(alex.goRace(car1));
         CLicenseDriver john = new CLicenseDriver("Ivanov John Ivanovich",
-                true, 6);
+                true, 6, "C");
         System.out.println(john.goRace(track1));
         DLicenseDriver katya = new DLicenseDriver("Ivanova Katya Ivanovna",
-                true, 6);
+                true, 6, "D");
         System.out.println(katya.goRace(mAZ));
 
+        passDiagnostics(car1, car2, car3,
+                        track1, track2, track3,
+                        liAZ, mAZ, mAN);
+
+    }
+    private static void passDiagnostics(Transport...transports){
+        for (Transport transport : transports) {
+            service(transport);
+        }
+    }
+    private static void service (Transport transport){
+        try {
+            if (!transport.passDiagnostics()) {
+                throw new RuntimeException("Автомобиль " + transport.getBrand() + " "
+                        + transport.getModel() + " диагностику не прошел");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
