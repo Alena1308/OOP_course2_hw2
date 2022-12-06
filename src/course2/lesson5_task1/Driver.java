@@ -1,14 +1,17 @@
-package course2.lesson4_task3;
+package course2.lesson5_task1;
 
 public abstract class Driver {
     private String fullName;
     private boolean hasLicense;
     private int experience;
+    private final String VALID_CHARACTERS = "bcdBCD";
+    private String typeLicense;
 
-    protected Driver(String fullName, boolean hasLicense, int experience) {
+    protected Driver(String fullName, boolean hasLicense, int experience, String typeLicense) {
         this.fullName = validateStringValue(fullName);
         this.hasLicense = hasLicense;
         this.experience = validateIntValue(experience);
+        setTypeLicense(typeLicense);
     }
     public abstract String startGoing();
     public abstract String stop();
@@ -46,5 +49,21 @@ public abstract class Driver {
     }
     public void setExperience(int experience) {
         this.experience = validateIntValue(experience);
+    }
+
+    public String getTypeLicense() {
+        return typeLicense;
+    }
+    public void setTypeLicense(String typeLicense) {
+        if (typeLicense == null || typeLicense.isEmpty() || typeLicense.isBlank()
+                || typeLicense.length() > 1) {
+            throw new IllegalArgumentException("Не верно указана категория прав");
+        }
+        for (int i = 0; i < typeLicense.length(); i++) {
+            if (!VALID_CHARACTERS.contains(String.valueOf(typeLicense.charAt(i)))) {
+                throw new IllegalArgumentException("Не верно указана категория прав");
+            }
+            this.typeLicense = typeLicense;
+        }
     }
 }

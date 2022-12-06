@@ -1,16 +1,19 @@
 package course2.transport;
 
-public class Passenger_cars extends Transport implements Competing{
+public class PassengerCars extends Transport implements Competing{
+    private BodyType bodyType;
     private double pitStopIndicator;
     private double BestLapTimeIndicator;
     private double maxSpeedIndicator;
 
-    public Passenger_cars(String brand, String model, double engineVolume,
-                          double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator) {
+    public PassengerCars(String brand, String model, double engineVolume,
+                         double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator,
+                         BodyType bodyType) {
         super(brand, model, engineVolume);
         this.pitStopIndicator = validateDoubleValue(pitStopIndicator);
         BestLapTimeIndicator = validateDoubleValue(bestLapTimeIndicator);
         this.maxSpeedIndicator = validateDoubleValue(maxSpeedIndicator);
+        this.bodyType = bodyType;
     }
 
     @Override
@@ -20,6 +23,20 @@ public class Passenger_cars extends Transport implements Competing{
     @Override
     public String finishGoing() {
         return "Выйти из автобуса";
+    }
+
+    @Override
+    public void printType() {
+        if (bodyType == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println(bodyType);
+        }
+    }
+
+    @Override
+    public boolean passDiagnostics() {
+        return Math.random() > 0.6;
     }
 
     @Override
@@ -61,6 +78,10 @@ public class Passenger_cars extends Transport implements Competing{
     public void setMaxSpeedIndicator(double maxSpeedIndicator) {
         this.maxSpeedIndicator = validateDoubleValue(maxSpeedIndicator);
     }
-
-
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
+    }
 }
