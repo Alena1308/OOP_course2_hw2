@@ -1,4 +1,4 @@
-package course2.lesson5_task1;
+package course2.people;
 
 public abstract class Driver {
     private String fullName;

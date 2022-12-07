@@ -1,8 +1,8 @@
 package course2.transport;
 
-import course2.lesson5_task1.BLicenseDriver;
-import course2.lesson5_task1.CLicenseDriver;
-import course2.lesson5_task1.DLicenseDriver;
+import course2.people.*;
+
+import java.util.List;
 
 public class TransportTest {
     public static void main(String[] args) {
@@ -36,16 +36,16 @@ public class TransportTest {
         track3.printType();
         track1.printType();
 
-        Bus liAZ = new Bus("ЛиАЗ","4292", 5,
+        Bus liaz = new Bus("ЛиАЗ", "4292", 5,
                 65, 4, 115, Capacity.ESPECIALLY_SMALL);
-        Bus mAZ = new Bus("МАЗ","232", 5,
+        Bus mAZ = new Bus("МАЗ", "232", 5,
                 65, 4, 115, Capacity.LARGE);
-        Bus mAN = new Bus("МАН","Lian City", 5,
+        Bus mAN = new Bus("МАН", "Lian City", 5,
                 65, 4, 115, Capacity.ESPECIALLY_LARGE);
-        Bus mAN2 = new Bus("МАН","Lian", 4,
+        Bus mAN2 = new Bus("МАН", "Lian", 4,
                 65, 4, 115, Capacity.MEDIUM);
-        System.out.println(liAZ);
-        liAZ.printType();
+        System.out.println(liaz);
+        liaz.printType();
         System.out.println(mAZ);
         System.out.println(mAN);
         mAN.printType();
@@ -62,9 +62,60 @@ public class TransportTest {
         System.out.println(katya.goRace(mAZ));
 
         passDiagnostics(car1, car2, car3,
-                        track1, track2, track3,
-                        liAZ, mAZ, mAN);
+                track1, track2, track3,
+                liaz, mAZ, mAN);
+        List<Transport> transports = List.of(car1, track1,
+                liaz);
 
+
+        Sponsors sp1 = new Sponsors("Богач1", 200_000);
+        Sponsors sp2 = new Sponsors("Богач2", 300_000);
+        Sponsors sp3 = new Sponsors("Богач3", 400_000);
+
+
+        Mechanics<PassengerCars> mch1 = new Mechanics<>("Механик1", "ABC",
+                "легковые");
+        Mechanics<Trucks> mch2 = new Mechanics<>("Механик1", "ABC",
+                "грузовики");
+        Mechanics<Bus> mch3 = new Mechanics<>("Механик1", "ABC",
+                "автобусы");
+
+        car1.addDriver(alex);
+        car1.addMechanic(mch1);
+        car1.addSponsor(sp1, sp2);
+        printInfo(car1);
+
+        track1.addDriver(john);
+        track1.addMechanic(mch2);
+        track1.addSponsor(sp1, sp2);
+        printInfo(track1);
+
+        liaz.addDriver(katya);
+        liaz.addSponsor(sp2);
+        liaz.addMechanic(mch3);
+        printInfo(liaz);
+
+        ServiceStation serviceStation = new ServiceStation();
+        serviceStation.addPassengerCar(car1);
+        serviceStation.addTruck(track1);
+        serviceStation.service();
+    }
+
+    private static void printInfo(Transport t){
+        System.out.println("Автомобиль: "+t.getBrand()+" "+ t.getModel()+" "+
+                "Информация: ");
+    getNames(t);
+    }
+    public static void getNames (Transport transport){
+        for (Driver driver : transport.getDrivers()) {
+            System.out.println(driver.getFullName());
+        }
+        for (Sponsors sponsors : transport.getSponsors()) {
+            System.out.println(sponsors.getName()+" "+sponsors.getMoney());
+        }
+        for (Mechanics mechanics : transport.getMechanics()) {
+            System.out.println(mechanics.getName()+" "+ mechanics.getCompanyName());
+        }
     }
     private static void passDiagnostics(Transport...transports){
         for (Transport transport : transports) {
@@ -81,4 +132,5 @@ public class TransportTest {
             System.out.println(e.getMessage());
         }
     }
+
 }
