@@ -4,18 +4,15 @@ import course2.people.Driver;
 import course2.people.Mechanics;
 import course2.people.Sponsors;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class Transport {
     private String brand;
     private String model;
     private double engineVolume;
-    private final List<Driver> drivers = new ArrayList<>();
-    private final List<Sponsors> sponsors = new ArrayList<>();
-    private List<Mechanics<?>> mechanics = new ArrayList<>();
+    private final Set<Driver> drivers = new HashSet<>();
+    private final Set<Sponsors> sponsors = new HashSet<>();
+    private Set<Mechanics<?>> mechanics = new HashSet<>();
 
     protected Transport(String brand, String model, double engineVolume) {
         this.brand = validateStringValue(brand);
@@ -100,13 +97,13 @@ public abstract class Transport {
         this.engineVolume = validateDoubleValue(engineVolume);
     }
 
-    public List<Driver> getDrivers() {
+    public Set<Driver> getDrivers() {
         return drivers;
     }
-    public List<Sponsors> getSponsors() {
+    public Set<Sponsors> getSponsors() {
         return sponsors;
     }
-    public List<Mechanics<?>> getMechanics() {
+    public Set<Mechanics<?>> getMechanics() {
         return mechanics;
     }
 

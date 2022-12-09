@@ -40,7 +40,7 @@ public class Bus extends Transport implements Competing{
 
     @Override
     public boolean passDiagnostics() {
-        System.out.println("Автобус " + getBrand() + getModel() + " не ребует диагностики");
+        System.out.println("Автобус " + getBrand() + getModel() + " не требует диагностики");
         return true;
     }
 

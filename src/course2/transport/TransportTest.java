@@ -2,7 +2,9 @@ package course2.transport;
 
 import course2.people.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TransportTest {
     public static void main(String[] args) {
@@ -64,9 +66,10 @@ public class TransportTest {
         passDiagnostics(car1, car2, car3,
                 track1, track2, track3,
                 liaz, mAZ, mAN);
-        List<Transport> transports = List.of(car1, track1,
-                liaz);
-
+        Set<Transport> transports = new HashSet<>();
+        transports.add(car1);
+        transports.add(track1);
+        transports.add(liaz);
 
         Sponsors sp1 = new Sponsors("Богач1", 200_000);
         Sponsors sp2 = new Sponsors("Богач2", 300_000);
@@ -75,17 +78,23 @@ public class TransportTest {
 
         Mechanics<PassengerCars> mch1 = new Mechanics<>("Механик1", "ABC",
                 "легковые");
-        Mechanics<Trucks> mch2 = new Mechanics<>("Механик1", "ABC",
+        Mechanics<Trucks> mch2 = new Mechanics<>("Механик2", "ABC",
                 "грузовики");
-        Mechanics<Bus> mch3 = new Mechanics<>("Механик1", "ABC",
+        Mechanics<Bus> mch3 = new Mechanics<>("Механик3", "ABC",
+                "автобусы");
+        Mechanics<Bus> mch4 = new Mechanics<>("Механик3", "ABC",
                 "автобусы");
 
         car1.addDriver(alex);
+        car1.addDriver(alex);
         car1.addMechanic(mch1);
+        car1.addMechanic(mch1);
+        car1.addSponsor(sp1, sp2);
         car1.addSponsor(sp1, sp2);
         printInfo(car1);
 
         track1.addDriver(john);
+        track1.addMechanic(mch2);
         track1.addMechanic(mch2);
         track1.addSponsor(sp1, sp2);
         printInfo(track1);
@@ -93,13 +102,45 @@ public class TransportTest {
         liaz.addDriver(katya);
         liaz.addSponsor(sp2);
         liaz.addMechanic(mch3);
+        liaz.addMechanic(mch4);
         printInfo(liaz);
 
         ServiceStation serviceStation = new ServiceStation();
         serviceStation.addPassengerCar(car1);
         serviceStation.addTruck(track1);
         serviceStation.service();
+
+        System.out.println("\n=======================================");
+        System.out.println("ДЗ-3");
+        System.out.println("Задание-2");
+        int [][] tasks = new int[15][3];
+        for (int i = 0; i < tasks.length; i++) {
+            for (int j = 0; j < tasks[i].length; j++) {
+                tasks[i][j] = (int)(Math.random() * 8) + 2;
+                if(j==tasks[i].length-1){
+                    tasks[i][j] = tasks[i][j-2] * tasks[i][j-1];
+                    for (int k = 0; k < i; k++) {
+                        if(tasks[i][j]==tasks[k][j]){
+                            if(tasks[i][j-1]==tasks[k][j-1] || tasks[i][j-2]== tasks[k][j-2]) --i;
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+        for (int i = 0; i < tasks.length; i++) {
+            System.out.print("Задача №"+(i+1+" умножить "));
+            for (int j = 0; j < tasks[i].length; j++) {
+                if (j==0)
+                    System.out.print(tasks[i][j] + " на ");
+                if (j==1)
+                    System.out.println(tasks[i][j]);
+            }
+        }
     }
+
 
     private static void printInfo(Transport t){
         System.out.println("Автомобиль: "+t.getBrand()+" "+ t.getModel()+" "+
