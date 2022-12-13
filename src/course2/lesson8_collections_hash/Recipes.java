@@ -8,7 +8,6 @@ public class Recipes {
     private final String name;
     private Set<Products> products = new HashSet<>();
     private double sumPrice;
-    private Set<Recipes> recipeList = new HashSet<>();
 
     public Recipes(String name, Set<Products> products) {
         this.name = name;

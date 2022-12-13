@@ -8,7 +8,6 @@ public class Products {
     private String name;
     private double price;
     private double quantity;
-    private Set<Products> products = new HashSet<>();
 
     public Products(String name, double price, double quantity) {
             this.name = validateStringValue(name);
