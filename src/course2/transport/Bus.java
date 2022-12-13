@@ -1,13 +1,18 @@
 package course2.transport;
 
+import course2.people.Driver;
+import course2.people.Mechanics;
+import course2.people.Sponsors;
+
+import java.util.List;
+
 public class Bus extends Transport implements Competing{
     private Capacity capacity;
     private double pitStopIndicator;
     private double BestLapTimeIndicator;
     private double maxSpeedIndicator;
-    public Bus(String brand, String model, double engineVolume,
-               double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator,
-               Capacity capacity) {
+    public Bus(String brand, String model, double engineVolume, double pitStopIndicator,
+               double bestLapTimeIndicator, double maxSpeedIndicator, Capacity capacity) {
         super(brand, model, engineVolume);
         this.pitStopIndicator = validateDoubleValue(pitStopIndicator);
         BestLapTimeIndicator = validateDoubleValue(bestLapTimeIndicator);
@@ -35,8 +40,13 @@ public class Bus extends Transport implements Competing{
 
     @Override
     public boolean passDiagnostics() {
-        System.out.println("Автобус " + getBrand() + getModel() + " не ребует диагностики");
+        System.out.println("Автобус " + getBrand() + getModel() + " не требует диагностики");
         return true;
+    }
+
+    @Override
+    public void fixTheCar() {
+        System.out.println("Автобус "+getBrand()+" "+getModel()+" отремонтирован");
     }
 
     @Override

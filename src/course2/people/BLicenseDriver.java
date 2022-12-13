@@ -1,4 +1,4 @@
-package course2.lesson5_task1;
+package course2.people;
 
 import course2.transport.PassengerCars;
 

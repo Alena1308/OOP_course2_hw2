@@ -1,4 +1,6 @@
-package course2.lesson5_task1;
+package course2.people;
+
+import java.util.Objects;
 
 public abstract class Driver {
     private String fullName;
@@ -13,6 +15,20 @@ public abstract class Driver {
         this.experience = validateIntValue(experience);
         setTypeLicense(typeLicense);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver driver = (Driver) o;
+        return experience == driver.experience && fullName.equals(driver.fullName) && typeLicense.equals(driver.typeLicense);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, experience, typeLicense);
+    }
+
     public abstract String startGoing();
     public abstract String stop();
     public abstract String refuelTheCar();

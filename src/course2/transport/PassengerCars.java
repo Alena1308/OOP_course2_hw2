@@ -1,14 +1,18 @@
 package course2.transport;
 
+import course2.people.Driver;
+import course2.people.Mechanics;
+import course2.people.Sponsors;
+
+import java.util.List;
+
 public class PassengerCars extends Transport implements Competing{
     private BodyType bodyType;
     private double pitStopIndicator;
     private double BestLapTimeIndicator;
     private double maxSpeedIndicator;
-
-    public PassengerCars(String brand, String model, double engineVolume,
-                         double pitStopIndicator, double bestLapTimeIndicator, double maxSpeedIndicator,
-                         BodyType bodyType) {
+    public PassengerCars(String brand, String model, double engineVolume, double pitStopIndicator,
+                         double bestLapTimeIndicator, double maxSpeedIndicator, BodyType bodyType) {
         super(brand, model, engineVolume);
         this.pitStopIndicator = validateDoubleValue(pitStopIndicator);
         BestLapTimeIndicator = validateDoubleValue(bestLapTimeIndicator);
@@ -37,6 +41,11 @@ public class PassengerCars extends Transport implements Competing{
     @Override
     public boolean passDiagnostics() {
         return Math.random() > 0.6;
+    }
+
+    @Override
+    public void fixTheCar() {
+        System.out.println("Машина "+getBrand()+" "+getModel()+" отремонтирована");
     }
 
     @Override

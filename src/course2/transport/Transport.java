@@ -1,11 +1,18 @@
 package course2.transport;
 
-import java.util.Objects;
+import course2.people.Driver;
+import course2.people.Mechanics;
+import course2.people.Sponsors;
+
+import java.util.*;
 
 public abstract class Transport {
     private String brand;
     private String model;
     private double engineVolume;
+    private final Set<Driver> drivers = new HashSet<>();
+    private final Set<Sponsors> sponsors = new HashSet<>();
+    private Set<Mechanics<?>> mechanics = new HashSet<>();
 
     protected Transport(String brand, String model, double engineVolume) {
         this.brand = validateStringValue(brand);
@@ -36,6 +43,17 @@ public abstract class Transport {
     public abstract String finishGoing();
     public abstract void printType();
     public abstract boolean passDiagnostics();
+    public abstract void fixTheCar();
+
+    public void addDriver(Driver driver){
+        drivers.add(driver);
+    }
+    public void addSponsor(Sponsors... sponsor){
+        sponsors.addAll(Arrays.asList(sponsor));
+    }
+    public void addMechanic(Mechanics<?> mechanic){
+        mechanics.add(mechanic);
+    }
 
     public String validateStringValue(String value) {
         if (value == null || value.isEmpty() || value.isBlank()) {
@@ -78,4 +96,16 @@ public abstract class Transport {
     public void setEngineVolume(double engineVolume) {
         this.engineVolume = validateDoubleValue(engineVolume);
     }
+
+    public Set<Driver> getDrivers() {
+        return drivers;
+    }
+    public Set<Sponsors> getSponsors() {
+        return sponsors;
+    }
+    public Set<Mechanics<?>> getMechanics() {
+        return mechanics;
+    }
+
+
 }
