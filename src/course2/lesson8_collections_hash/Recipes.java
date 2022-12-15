@@ -1,17 +1,15 @@
 package course2.lesson8_collections_hash;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Recipes {
     private final String name;
-    private Set<Products> products = new HashSet<>();
+    private Map<Products, Integer> productsList;
     private double sumPrice;
 
-    public Recipes(String name, Set<Products> products) {
+    public Recipes(String name) {
         this.name = name;
-        this.products = products;
+        this.productsList = new HashMap<>();
     }
 
     @Override
@@ -31,33 +29,25 @@ public class Recipes {
     public String toString() {
         return "\n" + name + "\n" +
                 "Список продуктов: " + "\n" +
-                products + "\n" +
-                "Общая сумма: " + findSumPrice() + "\n" +
-                "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+                productsList + "\n" +
+                "Общая сумма: " + sumPrice + "\n" +
+                "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n";
     }
 
-    public void addRecipeList (Set<Recipes> recipeList){
-        if(!recipeList.contains(this)){
-            recipeList.add(this);
-        } else {
-            throw new UnsupportedOperationException("Рецепт " + this.getName() +
-                    " Уже сеть в списке");
+    public void addProductInRecipes (Products products, Integer amount) {
+        amount = amount == 0 ? 1 : amount;
+        this.productsList.put(products, amount);
+        for (Products product : this.productsList.keySet() ) {
+            this.sumPrice += product.getPrice() * this.productsList.get(product);
         }
-    }
-
-    private double findSumPrice(){
-        for (Products product:products) {
-            sumPrice += product.getPrice();
-        }
-        return sumPrice;
     }
 
     public final String getName() {
         return name;
     }
 
-    public final Set<Products> getProducts() {
-        return products;
+    public final Map<Products, Integer> getProductsList() {
+        return productsList;
     }
 
     public final double getSumPrice() {
