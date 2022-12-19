@@ -7,17 +7,15 @@ import java.util.Set;
 public class Products {
     private String name;
     private double price;
-    private double quantity;
 
-    public Products(String name, double price, double quantity) {
-            this.name = validateStringValue(name);
-            this.price = validateDoubleValue(price);
-            this.quantity = validateDoubleValue(quantity);
+    public Products(String name, double price) {
+        this.name = validateStringValue(name);
+        this.price = validateDoubleValue(price);
     }
 
     @Override
     public String toString() {
-        return "\n" + name + ": цена - " + price + " руб, количество - " + quantity + " кг";
+        return "\n" + name + ": цена - " + price + " руб";
     }
 
     @Override
@@ -25,21 +23,12 @@ public class Products {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Products products = (Products) o;
-        return Double.compare(products.price, price) == 0 && Double.compare(products.quantity, quantity) == 0 && name.equals(products.name);
+        return Double.compare(products.price, price) == 0 && name.equals(products.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, price, quantity);
-    }
-
-    public void addProductList(Set<Products> products){
-        if(!products.contains(this)){
-            products.add(this);
-        } else{
-            throw new UnsupportedOperationException("Продукт " + this.getName() +
-                    " Уже сеть в списке");
-        }
+        return Objects.hash(name, price);
     }
 
     public String validateStringValue(String value) {
@@ -49,10 +38,11 @@ public class Products {
             return value;
         }
     }
-    public double validateDoubleValue (double value) {
+
+    public double validateDoubleValue(double value) {
         if (value <= 0) {
             throw new IllegalArgumentException("Заполните карточку товара полностью");
-        } else  {
+        } else {
             return value;
         }
     }
@@ -71,13 +61,5 @@ public class Products {
 
     public void setPrice(double price) {
         this.price = validateDoubleValue(price);
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(double quantity) {
-        this.quantity = validateDoubleValue(quantity);
     }
 }
